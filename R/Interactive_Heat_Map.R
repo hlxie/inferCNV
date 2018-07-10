@@ -121,11 +121,7 @@ Create_NGCHM <- function(plot_data,
     hm@rowCutLocations <- as.integer(length(reference_idx)+1)
     # make the size of the separation proportional to the size of the heat map 
     ## use ncol because plot_data has cell ID's as the columns 
-    if (nrow(plot_data) < 200) {
-        row_sep <- 2
-    }else{
-        row_sep <- nrow(plot_data)*.01
-    }
+    row_sep <- ceiling(nrow(plot_data)*.01)
     hm@rowCutWidth <- as.integer(row_sep)
     
     #----------------------Create Covariate Bar----------------------------------------------------------------------------------------------------------------------------------------
