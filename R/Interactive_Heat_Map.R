@@ -225,6 +225,8 @@ Create_NGCHM <- function(plot_data,
                              thickness = as.integer(20))
     # Covariate to identify Reference and Observed data
     ## Seperate and identify observed and reference cells
+    grouping_refs <- lapply(ret_list$REF_GROUPS, function(x){colnames(ret_list$VIZ)[x]})
+    ref_index <- rev(lapply(grouping_refs, function(x) {which(ret_list$REF_OBS_IDX %in% x)})) ## rev because inferCNV swaps order of references 
     cell_type <- replace(row_order, !(1:length(row_order) %in% unlist(ref_index)), paste("Observed"))
     
     ## Label the references based on index locations 
